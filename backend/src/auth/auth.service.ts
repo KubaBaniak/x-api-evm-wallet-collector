@@ -35,7 +35,6 @@ export class AuthService {
       'TWITTER_CLIENT_SECRET',
     );
 
-    console.log(authCode);
     if (!clientId || !clientSecret) {
       throw new BadRequestException(
         'Twitter client credentials are not configured.',

@@ -52,9 +52,14 @@ export class WalletsService {
       throw new NotFoundException('User not found');
     }
 
+    console.log(user);
+    if (user.wallet) {
+      throw new BadRequestException('User already registered wallet ');
+    }
+
     const wallet = await this.walletsRepository.findOne(user.id);
     if (wallet) {
-      throw new ConflictException('Wallet already in use');
+      throw new ConflictException('Wallet address already in use');
     }
 
     const isFollowingTargetUser = await this.twitterService.isFollowingAccount(

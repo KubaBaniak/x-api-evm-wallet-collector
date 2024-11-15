@@ -3,7 +3,7 @@ interface UserModel {
   twitterId: string;
   name: string;
   username: string;
-  wallet?: string;
+  wallet?: { address: string };
 }
 
 export class UserResponse {
@@ -11,7 +11,7 @@ export class UserResponse {
   twitterId: string;
   name: string;
   username: string;
-  wallet?: string;
+  wallet?: { address: string };
 
   constructor({ id, twitterId, name, username, wallet }: UserModel) {
     this.id = id;

@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UsersService } from 'src/users/users.service';
 import { TwitterService } from 'src/twitter/twitter.service';
@@ -21,6 +21,8 @@ export class AuthController {
     const tokenResponse = await this.authService.getTwitterTokenFromAuthCode(
       authCodeDto.authCode,
     );
+    console.log('THIS IS TOKEN RESPONSE');
+    console.log(tokenResponse);
 
     const jwtToken = await this.authService.generateOneTimeToken(
       tokenResponse.access_token,
@@ -36,7 +38,7 @@ export class AuthController {
 
     const user = await this.usersService.create(twitterUserData);
 
-    const sessionToken = this.authService.generateLongLivedToken(
+    const sessionToken = await this.authService.generateLongLivedToken(
       accessToken,
       user.id,
     );

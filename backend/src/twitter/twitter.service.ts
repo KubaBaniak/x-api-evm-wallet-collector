@@ -31,16 +31,20 @@ export class TwitterService {
   }
 
   async isFollowingAccount(token: string): Promise<boolean> {
+    console.log(token);
     try {
+      const url = `https://api.twitter.com/2/users/by/username/${ACCOUNT_TO_FOLLOW}`;
+      const urlParams = new URLSearchParams({
+        'user.fields': 'connection_status',
+      });
+      const fullUrl = `${url}?${urlParams.toString()}`;
+
       const response = await lastValueFrom(
-        this.httpService.get(
-          `https://api.x.com/2/users/by/username/${ACCOUNT_TO_FOLLOW}?user.fields=connection_status`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        this.httpService.get(fullUrl, {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        ),
+        }),
       );
 
       if (response.status !== 200) {
@@ -49,10 +53,12 @@ export class TwitterService {
         );
       }
 
-      return response.data.connection_status.contains('following') === true;
+      return (
+        response.data.data.connection_status.includes('following') === true
+      );
     } catch (error) {
-      console.log(error);
-      throw new Error(`Failed to fetch following: ${error.message}`);
+      console.log(error.response.data);
+      throw new HttpException(error.message, error.status);
     }
   }
 }

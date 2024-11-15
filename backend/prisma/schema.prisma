@@ -23,7 +23,7 @@ model User {
 
 model EVMWallet {
   id      Int    @id @default(autoincrement())
-  address String @unique @db.VarChar(40)
+  address String @unique @db.VarChar(42)
   user    User   @relation(fields: [userId], references: [id])
   userId  Int    @unique
 }

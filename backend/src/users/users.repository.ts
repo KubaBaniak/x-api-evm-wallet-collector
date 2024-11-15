@@ -20,6 +20,9 @@ export class UsersRepository {
   }
 
   findOneByTwitterId(twitterId: string): Promise<UserResponse> {
-    return this.prisma.user.findFirst({ where: { twitterId } });
+    return this.prisma.user.findFirst({
+      where: { twitterId },
+      include: { wallet: { select: { address: true } } },
+    });
   }
 }

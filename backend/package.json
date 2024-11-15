@@ -31,6 +31,9 @@
     "axios": "^1.7.7",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "crypto-js": "^4.2.0",
+    "oauth": "^0.10.0",
+    "oauth-1.0a": "^2.2.6",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "web3": "^4.15.0"
@@ -39,6 +42,7 @@
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
+    "@types/crypto-js": "^4.2.2",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",

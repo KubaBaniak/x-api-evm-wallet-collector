@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "EVMWallet" ALTER COLUMN "address" SET DATA TYPE VARCHAR(42);
