@@ -60,7 +60,6 @@ export class AuthService {
       return new TwitterTokenResponse(response.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.log(error);
         throw new BadRequestException(
           `Failed to exchange auth code for token: ${error.response?.data?.error || error.message}`,
         );

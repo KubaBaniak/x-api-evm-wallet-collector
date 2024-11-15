@@ -21,8 +21,6 @@ export class AuthController {
     const tokenResponse = await this.authService.getTwitterTokenFromAuthCode(
       authCodeDto.authCode,
     );
-    console.log('THIS IS TOKEN RESPONSE');
-    console.log(tokenResponse);
 
     const jwtToken = await this.authService.generateOneTimeToken(
       tokenResponse.access_token,

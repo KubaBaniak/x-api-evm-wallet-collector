@@ -52,7 +52,6 @@ export class WalletsService {
       throw new NotFoundException('User not found');
     }
 
-    console.log(user);
     if (user.wallet) {
       throw new BadRequestException('User already registered wallet ');
     }
@@ -95,8 +94,7 @@ export class WalletsService {
       );
 
       return createReadStream(join(process.cwd(), fullFilename));
-    } catch (error) {
-      console.error('Error writing or reading wallet addresses file:', error);
+    } catch {
       throw new InternalServerErrorException(
         'Failed to download wallet addresses',
       );

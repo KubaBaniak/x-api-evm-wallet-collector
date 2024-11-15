@@ -31,7 +31,6 @@ export class TwitterService {
   }
 
   async isFollowingAccount(token: string): Promise<boolean> {
-    console.log(token);
     try {
       const url = `https://api.twitter.com/2/users/by/username/${ACCOUNT_TO_FOLLOW}`;
       const urlParams = new URLSearchParams({
@@ -57,7 +56,6 @@ export class TwitterService {
         response.data.data.connection_status.includes('following') === true
       );
     } catch (error) {
-      console.log(error.response.data);
       throw new HttpException(error.message, error.status);
     }
   }
