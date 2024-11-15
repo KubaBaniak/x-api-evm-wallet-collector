@@ -1,0 +1,1 @@
+export * from './twitterId.decorator';
