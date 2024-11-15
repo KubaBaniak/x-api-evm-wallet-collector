@@ -11,7 +11,7 @@ export default function AuthButton() {
     const url =
       `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${twitterClientID}&redirect_uri=http://127.0.0.1:5173&scope=tweet.read+users.read+follows.read+offline.access&state=state&code_challenge=challenge&code_challenge_method=plain`;
 
-    window.open(url, "_blank");
+    window.open(url, "_self");
   };
 
   return (
