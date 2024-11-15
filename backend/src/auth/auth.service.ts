@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { TwitterTokenResponse } from './auth.dto';
 import { TWITTER_API_TOKEN, TWITTER_REDIRECT_URI } from './constants';
 import axios from 'axios';
