@@ -6,7 +6,7 @@ App for collecting EVM wallets.
 2. Run `docker compose up` 
 
 Notes:
-- Please use `0.0.0.0` for backend and frontend address if running by `docker compose`.
+- Please use `0.0.0.0` as backend and frontend address when running the app with `docker compose`.
 - For `DATABASE_URL` variable, if running by docker use `db` as host.
 - Change `TWITTER_REDIRECT_URI` in `./backend/src/auth/constants.ts` to the one provided in app settings on X devleoper platform (`ClientID`, and `Client Secret` are necessary as well).
 
