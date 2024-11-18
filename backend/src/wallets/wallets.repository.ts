@@ -14,7 +14,7 @@ export class WalletsRepository {
     return this.prismaService.eVMWallet.findMany();
   }
 
-  findOne(userId: number): Promise<WalletResponse | undefined> {
-    return this.prismaService.eVMWallet.findFirst({ where: { userId } });
+  findOneByAddress(address: string): Promise<WalletResponse | undefined> {
+    return this.prismaService.eVMWallet.findFirst({ where: { address } });
   }
 }

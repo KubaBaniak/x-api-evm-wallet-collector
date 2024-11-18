@@ -18,7 +18,6 @@ function App() {
         if (token) {
           auth.login(token);
           window.history.replaceState({}, document.title, "/");
-          console.log('Logged in')
         }
       }
     };

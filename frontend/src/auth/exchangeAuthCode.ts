@@ -13,14 +13,11 @@ export default async function sendAuthCodeToBackend(
 
     const data = await response.json();
     if (data.token) {
-      console.log("One-Time Token received:", data.token);
       return data.token;
     } else {
-      console.error("Failed to get one-time token from backend");
       return null;
     }
-  } catch (error) {
-    console.error("Error sending auth code to backend:", error);
+  } catch {
     return null;
   }
 }

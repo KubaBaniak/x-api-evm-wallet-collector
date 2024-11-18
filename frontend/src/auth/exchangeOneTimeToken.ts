@@ -15,14 +15,11 @@ export default async function sendOneTimeTokenToBackend(
 
     const data = await response.json();
     if (data.token) {
-      console.log("Long-Lived Token received:", data.token);
       return data.token;
     } else {
-      console.error("Failed to get long-lived token from backend");
       return null;
     }
-  } catch (error) {
-    console.error("Error sending one-time token to backend:", error);
+  } catch {
     return null;
   }
 }

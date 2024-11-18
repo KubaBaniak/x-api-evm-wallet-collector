@@ -12,7 +12,7 @@ import { ACCOUNT_TO_FOLLOW } from 'src/twitter/constants';
 import { UsersService } from 'src/users/users.service';
 import { LinkWalletObject } from './dto/link-wallet';
 import { WalletAddress } from './dto/wallet-address.dto';
-import { createReadStream, promises as fsPromises } from 'fs';
+import { createReadStream, promises as fsPromises, ReadStream } from 'fs';
 import { WALLET_ADDRESSES_FILENAME } from './constants';
 import { join } from 'path';
 import { isAddress } from 'web3-validator';
@@ -38,15 +38,6 @@ export class WalletsService {
     return this.walletsRepository.create(createWalletDto);
   }
 
-  async findWallet(userId: number): Promise<WalletResponse | undefined> {
-    const userWallet = await this.walletsRepository.findOne(userId);
-    if (!userWallet) {
-      throw new NotFoundException();
-    }
-
-    return userWallet;
-  }
-
   async getAllWallets(): Promise<WalletResponse[]> {
     return this.walletsRepository.findAll();
   }
@@ -66,7 +57,10 @@ export class WalletsService {
       throw new BadRequestException('User already registered wallet ');
     }
 
-    const wallet = await this.walletsRepository.findOne(user.id);
+    const wallet = await this.walletsRepository.findOneByAddress(
+      linkWalletObject.address,
+    );
+
     if (wallet) {
       throw new ConflictException('Wallet address already in use');
     }
@@ -89,7 +83,7 @@ export class WalletsService {
 
   async downloadWalletAddresses(
     walletAddresses: WalletAddress[],
-  ): Promise<NodeJS.ReadableStream> {
+  ): Promise<ReadStream> {
     const formattedWalletAddresses = walletAddresses
       .map((wallet) => wallet.address)
       .join('\n');

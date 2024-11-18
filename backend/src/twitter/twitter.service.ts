@@ -19,6 +19,7 @@ export class TwitterService {
           headers: { Authorization: `Bearer ${token}` },
         }),
       );
+      console.log(response);
       if (response.status !== 200) {
         throw new UnauthorizedException();
       }
@@ -53,7 +54,7 @@ export class TwitterService {
       }
 
       return (
-        response.data.data.connection_status.includes('following') === true
+        response.data.data.connection_status?.includes('following') || false
       );
     } catch (error) {
       throw new HttpException(error.message, error.status);
