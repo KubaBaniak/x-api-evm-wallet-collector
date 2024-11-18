@@ -3,6 +3,7 @@ import AuthButton from "./components/AuthButton";
 import { useAuth } from "./auth/AuthProvider";
 import handleAuthCode from "./auth/handleAuth";
 import { useEffect } from "react";
+import WalletAddressForm from "./components/WalletAddressForm";
 
 function App() {
   const auth = useAuth();
@@ -36,7 +37,7 @@ function App() {
             minHeight: "100vh",
           }}
         >
-          <p>Logged in</p>
+          <WalletAddressForm />
         </Box>
       ) : (
         <Box

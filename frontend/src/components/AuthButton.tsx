@@ -1,10 +1,8 @@
 import Button from "@mui/material/Button";
 import XIcon from "@mui/icons-material/X";
 import Stack from "@mui/material/Stack";
-import { useAuth } from "../auth/AuthProvider";
 
 export default function AuthButton() {
-  const auth = useAuth();
 
   const handleLogin = async () => {
     const twitterClientID = import.meta.env.VITE_TWITTER_CLIENT_ID;

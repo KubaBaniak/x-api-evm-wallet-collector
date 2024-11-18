@@ -15,6 +15,7 @@ import { WalletAddress } from './dto/wallet-address.dto';
 import { createReadStream, promises as fsPromises } from 'fs';
 import { WALLET_ADDRESSES_FILENAME } from './constants';
 import { join } from 'path';
+import { isAddress } from 'web3-validator';
 
 @Injectable()
 export class WalletsService {
@@ -23,6 +24,15 @@ export class WalletsService {
     private readonly twitterService: TwitterService,
     private readonly userService: UsersService,
   ) {}
+
+  isWalletAddressValid(address: string): void {
+    const isValid = isAddress(address);
+    if (!isValid) {
+      throw new BadRequestException(
+        'Wrong address format - please use EVM wallet with checksum',
+      );
+    }
+  }
 
   create(createWalletDto: CreateWalletDto): Promise<WalletResponse> {
     return this.walletsRepository.create(createWalletDto);

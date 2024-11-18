@@ -20,6 +20,8 @@ export class WalletsController {
     @UserId() userId: string,
     @Token() accessToken: string,
   ): Promise<WalletResponse> {
+    console.log(address);
+    this.walletsService.isWalletAddressValid(address);
     const user = await this.userService.findOne(+userId);
     return this.walletsService.linkWalletToUser({
       address,
