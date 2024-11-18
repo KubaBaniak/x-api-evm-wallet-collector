@@ -7,7 +7,7 @@ export default function AuthButton() {
   const handleLogin = async () => {
     const twitterClientID = import.meta.env.VITE_TWITTER_CLIENT_ID;
     const url =
-      `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${twitterClientID}&redirect_uri=http://127.0.0.1:5173&scope=tweet.read+users.read+follows.read+offline.access&state=state&code_challenge=challenge&code_challenge_method=plain`;
+      `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${twitterClientID}&redirect_uri=http://0.0.0.0:3001&scope=tweet.read+users.read+follows.read+offline.access&state=state&code_challenge=challenge&code_challenge_method=plain`;
 
     window.open(url, "_self");
   };
